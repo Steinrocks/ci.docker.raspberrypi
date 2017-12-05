@@ -33,6 +33,7 @@ RUN wget -O /opt/ibm/wlp/usr/servers/defaultServer/dropins/HelloLiberty.ear \
 #uncomment the below line and the change app name to match that of an app in same dir as this Dockerfile to
 #install the app into your image
 #COPY appname.war /opt/ibm/wlp/usr/servers/defaultServer/dropins/
+VOLUME ["/opt/ibm/wlp/usr/servers/defaultServer/dropins"]
 
 CMD ["/opt/ibm/wlp/bin/server", "run", "defaultServer"]
 
