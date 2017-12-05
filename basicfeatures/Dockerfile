@@ -26,9 +26,14 @@ RUN if [ ! -z $REPOSITORIES_PROPERTIES ]; then mkdir /opt/ibm/wlp/etc/ \
     servlet-3.1 jsp-2.3 websocket-1.1 localConnector-1.0 \
     && if [ ! -z $REPOSITORIES_PROPERTIES ]; then rm /opt/ibm/wlp/etc/repositories.properties; fi \
     && rm -rf /output/workarea /output/logs
+    
+RUN wget -O /opt/ibm/wlp/usr/servers/defaultServer/dropins/HelloLiberty.ear \
+     "https://experience.jupitercloud.de/nexus/service/local/artifact/maven/redirect?r=snapshots&g=HelloLiberty&a=HelloLiberty&e=ear&v=LATEST"    
 
 #uncomment the below line and the change app name to match that of an app in same dir as this Dockerfile to
 #install the app into your image
 #COPY appname.war /opt/ibm/wlp/usr/servers/defaultServer/dropins/
 
 CMD ["/opt/ibm/wlp/bin/server", "run", "defaultServer"]
+
+EXPOSE 9080
